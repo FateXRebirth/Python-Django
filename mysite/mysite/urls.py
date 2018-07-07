@@ -15,6 +15,8 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
+from django.conf.urls.static import static
+from django.conf import settings
 
 from trips.views import hello_world, home, post_detail
 
@@ -23,4 +25,8 @@ urlpatterns = [
     url(r'^hello/$', hello_world),
     url(r'^$', home),
     url(r'^post/(?P<pk>\d+)/$', post_detail, name='post_detail'),
-]
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+
+# for media files
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+

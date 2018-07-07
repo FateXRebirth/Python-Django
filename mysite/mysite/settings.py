@@ -11,10 +11,15 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 
 import os
-
 import sys
+
+# python 2.x
+# reload(sys)
+# sys.setdefaultencoding('utf8')
+
+# python 3.x
+from imp import reload
 reload(sys)
-sys.setdefaultencoding('utf8')
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -123,3 +128,12 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+STATICFILES_DIRS = [
+   	os.path.join(BASE_DIR, "static1"),
+   	os.path.join(BASE_DIR, "static2"),
+]
